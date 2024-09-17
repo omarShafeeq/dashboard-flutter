@@ -8,7 +8,7 @@ import 'package:web_dashboard/widgets/charts/build_socialMedia_taffic_card.dart'
 class DashboardCharts extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Padding(
+    return const Padding(
       padding: EdgeInsets.all(0.0),
       child: Responsive(
         desktop: Row(

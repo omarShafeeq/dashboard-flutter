@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:sidebar_drawer/sidebar_drawer.dart';
 import 'package:web_dashboard/widgets/app_bar.dart';
@@ -27,7 +26,7 @@ class EmailScreen extends StatelessWidget {
                   Container(
                     width: 250,
                     color: Colors.grey[200],
-                    child: Column(
+                    child: const Column(
                       children: [
                         _SidebarItem(title: 'Inbox'),
                         _SidebarItem(title: 'Starred'),
@@ -121,7 +120,7 @@ class EmailScreen extends StatelessWidget {
                         // Action Buttons Above Email List
                         Expanded(
                           child: ListView(
-                            children: [
+                            children: const [
                               _EmailItem(
                                 sender: 'Lucas Kriebel (via Twitter)',
                                 subject: 'You have a new message!',
@@ -169,7 +168,7 @@ class _SidebarItem extends StatelessWidget {
     return ListTile(
       title: Text(
         title,
-        style: TextStyle(color: Colors.black),
+        style: const TextStyle(color: Colors.black),
       ),
       onTap: () {
         // Handle sidebar item tap

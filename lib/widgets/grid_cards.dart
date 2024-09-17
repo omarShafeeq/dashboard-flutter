@@ -97,10 +97,7 @@ class GridCards extends StatelessWidget {
         mainAxisSpacing: 0, // Set mainAxisSpacing to 0
       ),
       itemBuilder: (context, index) {
-        return Padding(
-          padding: const EdgeInsets.all(0), // Remove padding around each card
-          child: cards[index],
-        );
+        return cards[index];
       },
     );
   }

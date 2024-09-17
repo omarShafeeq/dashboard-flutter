@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:sidebar_drawer/sidebar_drawer.dart';
 import 'package:syncfusion_flutter_calendar/calendar.dart';
 import 'package:web_dashboard/widgets/another_notification.dart';
-import 'package:web_dashboard/widgets/notifications.dart';
 import 'package:web_dashboard/widgets/side_menu.dart';
 
 class CalenderView extends StatefulWidget {

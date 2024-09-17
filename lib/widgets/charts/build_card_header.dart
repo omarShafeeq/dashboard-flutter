@@ -37,9 +37,9 @@ class BuildCardHeader extends StatelessWidget {
               ],
             ),
             style: ElevatedButton.styleFrom(
-              padding: EdgeInsets.symmetric(
+              padding: const EdgeInsets.symmetric(
                   horizontal: 15.0, vertical: 4.0), // Adjust padding
-              minimumSize: Size(0, 36),
+              minimumSize: const Size(0, 36),
               shape: BeveledRectangleBorder(
                   borderRadius: BorderRadius.circular(3)),
               backgroundColor: const Color(0xff159488),

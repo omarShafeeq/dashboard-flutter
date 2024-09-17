@@ -5,7 +5,6 @@ import 'package:charts_flutter/flutter.dart' as charts;
 import 'package:flutter_map/flutter_map.dart';
 import 'package:flutter_map_cancellable_tile_provider/flutter_map_cancellable_tile_provider.dart';
 import 'package:latlong2/latlong.dart';
-import 'package:web_dashboard/widgets/product_table.dart';
 
 class RevenueLocationCard extends StatefulWidget {
   @override
@@ -60,105 +59,102 @@ class _RevenueLocationCardState extends State<RevenueLocationCard> {
   Widget build(BuildContext context) {
     return SizedBox(
       height: 400,
-      child: Expanded(
-        child: Card(
-          child: Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                const Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text('Revenue by Location and Country'),
-                    Icon(
-                      Icons.menu,
-                    )
-                  ],
-                ),
-                const SizedBox(
-                  height: 16.0,
-                ),
-                Row(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    // Map Section
-                    Expanded(
-                      flex:
-                          2, // Adjust the flex according to your layout preference
-                      child: MouseRegion(
-                        onHover: _onHover,
-                        child: Stack(
-                          children: [
-                            Container(
-                              height: 300,
-                              child: FlutterMap(
-                                options: MapOptions(
-                                  initialCenter: const LatLng(20.0, 0.0),
-                                  initialZoom: 2,
-                                  maxZoom: 10,
-                                  minZoom: 2,
-                                  interactionOptions: InteractionOptions(
-                                    cursorKeyboardRotationOptions:
-                                        CursorKeyboardRotationOptions
-                                            .disabled(),
-                                    flags: InteractiveFlag.all,
+      child: Card(
+        child: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              const Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text('Revenue by Location and Country'),
+                  Icon(
+                    Icons.menu,
+                  )
+                ],
+              ),
+              const SizedBox(
+                height: 16.0,
+              ),
+              Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  // Map Section
+                  Expanded(
+                    flex:
+                        2, // Adjust the flex according to your layout preference
+                    child: MouseRegion(
+                      onHover: _onHover,
+                      child: Stack(
+                        children: [
+                          Container(
+                            height: 300,
+                            child: FlutterMap(
+                              options: MapOptions(
+                                initialCenter: const LatLng(20.0, 0.0),
+                                initialZoom: 2,
+                                maxZoom: 10,
+                                minZoom: 2,
+                                interactionOptions: InteractionOptions(
+                                  cursorKeyboardRotationOptions:
+                                      CursorKeyboardRotationOptions.disabled(),
+                                  flags: InteractiveFlag.all,
+                                ),
+                              ),
+                              children: [
+                                TileLayer(
+                                  urlTemplate:
+                                      'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
+                                  userAgentPackageName:
+                                      'dev.fleaflet.flutter_map.example',
+                                  tileProvider:
+                                      CancellableNetworkTileProvider(),
+                                ),
+                                MarkerLayer(
+                                  markers: _countryMarkers.map((marker) {
+                                    String country = marker.keys.first;
+                                    LatLng point = marker[country]!;
+                                    return _buildMarker(point, country);
+                                  }).toList(),
+                                ),
+                              ],
+                            ),
+                          ),
+                          if (_hoveredCountry != null &&
+                              _hoveredPosition != null)
+                            Positioned(
+                              left: _hoveredPosition!.dx + 10,
+                              top: _hoveredPosition!.dy - 30,
+                              child: Material(
+                                elevation: 4,
+                                child: Container(
+                                  padding: const EdgeInsets.all(8.0),
+                                  color: Colors.white,
+                                  child: Text(
+                                    _hoveredCountry!,
+                                    style: const TextStyle(fontSize: 14),
                                   ),
                                 ),
-                                children: [
-                                  TileLayer(
-                                    urlTemplate:
-                                        'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
-                                    userAgentPackageName:
-                                        'dev.fleaflet.flutter_map.example',
-                                    tileProvider:
-                                        CancellableNetworkTileProvider(),
-                                  ),
-                                  MarkerLayer(
-                                    markers: _countryMarkers.map((marker) {
-                                      String country = marker.keys.first;
-                                      LatLng point = marker[country]!;
-                                      return _buildMarker(point, country);
-                                    }).toList(),
-                                  ),
-                                ],
                               ),
                             ),
-                            if (_hoveredCountry != null &&
-                                _hoveredPosition != null)
-                              Positioned(
-                                left: _hoveredPosition!.dx + 10,
-                                top: _hoveredPosition!.dy - 30,
-                                child: Material(
-                                  elevation: 4,
-                                  child: Container(
-                                    padding: const EdgeInsets.all(8.0),
-                                    color: Colors.white,
-                                    child: Text(
-                                      _hoveredCountry!,
-                                      style: const TextStyle(fontSize: 14),
-                                    ),
-                                  ),
-                                ),
-                              ),
-                          ],
-                        ),
+                        ],
                       ),
                     ),
-                    // Bar Chart Section
-                    Expanded(
-                      flex:
-                          1, // Adjust the flex according to your layout preference
-                      child: Container(
-                        height: 300,
-                        padding: const EdgeInsets.all(8.0),
-                        child: RevenueBarChart(),
-                      ),
+                  ),
+                  // Bar Chart Section
+                  Expanded(
+                    flex:
+                        1, // Adjust the flex according to your layout preference
+                    child: Container(
+                      height: 300,
+                      padding: const EdgeInsets.all(8.0),
+                      child: RevenueBarChart(),
                     ),
-                  ],
-                ),
-              ],
-            ),
+                  ),
+                ],
+              ),
+            ],
           ),
         ),
       ),

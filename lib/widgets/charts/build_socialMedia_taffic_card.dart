@@ -8,18 +8,18 @@ class BuildSocialMediaTrafficCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Card(
+    return Card(
       elevation: 2,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           BuildCardHeader('Social Media Traffic'),
           BuildTableHeader(['Network', 'Visits', 'Progress']),
-          BuildProgressRow('Facebook', 8000, 15000, Colors.blue),
-          BuildProgressRow('Instagram', 5000, 15000, Colors.blue),
-          BuildProgressRow('Twitter', 4000, 15000, Colors.blue),
-          BuildProgressRow('LinkedIn', 4500, 15000, Colors.blue),
-          BuildProgressRow('Other', 3000, 15000, Colors.blue),
+          BuildProgressRow('Facebook', 8000, 15000, color: Colors.blue),
+          BuildProgressRow('Instagram', 5000, 15000, color: Colors.blue),
+          BuildProgressRow('Twitter', 4000, 15000, color: Colors.blue),
+          BuildProgressRow('LinkedIn', 4500, 15000, color: Colors.blue),
+          BuildProgressRow('Other', 3000, 15000, color: Colors.blue),
         ],
       ),
     );

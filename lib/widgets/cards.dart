@@ -1,6 +1,4 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 
 class Cards extends StatefulWidget {
   const Cards({
@@ -32,11 +30,12 @@ class _CardsState extends State<Cards> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: 300,
-      child: MouseRegion(
-        onEnter: (_) => setState(() => _isHovered = true),
-        onExit: (_) => setState(() => _isHovered = false),
+    var hight = MediaQuery.of(context).size.height * .01;
+    return MouseRegion(
+      onEnter: (_) => setState(() => _isHovered = true),
+      onExit: (_) => setState(() => _isHovered = false),
+      child: Container(
+        height: 80,
         child: Card(
           child: Padding(
             padding: const EdgeInsets.all(8.0),
@@ -44,17 +43,15 @@ class _CardsState extends State<Cards> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 const SizedBox(
-                  height: 5,
+                  height: 7,
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Flexible(
-                      child: Text(
-                        widget.title,
-                        style: TextStyle(color: Colors.grey[600]),
-                        overflow: TextOverflow.ellipsis, // Handle overflow
-                      ),
+                    Text(
+                      widget.title,
+                      style: TextStyle(color: Colors.grey[600]),
+                      overflow: TextOverflow.ellipsis, // Handle overflow
                     ),
                     // Rotate slightly on hover
                     Stack(
@@ -87,14 +84,14 @@ class _CardsState extends State<Cards> {
                     ),
                   ],
                 ),
-                const SizedBox(height: 7),
+                SizedBox(height: hight),
                 Text(
                   widget.number,
                   style: const TextStyle(
                     fontSize: 22,
                   ),
                 ),
-                const SizedBox(height: 7),
+                SizedBox(height: hight),
                 Row(
                   children: [
                     Container(
@@ -121,13 +118,11 @@ class _CardsState extends State<Cards> {
                       ),
                     ),
                     const SizedBox(width: 10),
-                    Flexible(
-                      child: Text(
-                        widget.subTitle,
-                        maxLines: 1,
-                        overflow: TextOverflow.ellipsis,
-                        style: TextStyle(color: Colors.grey[600]),
-                      ),
+                    Text(
+                      widget.subTitle,
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                      style: TextStyle(color: Colors.grey[600]),
                     ),
                   ],
                 ),

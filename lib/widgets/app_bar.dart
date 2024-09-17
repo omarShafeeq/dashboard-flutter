@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:web_dashboard/cubit/cubit.dart';
@@ -27,33 +26,33 @@ class _AppBarWidgetState extends State<AppBarWidget> {
     return Row(
       children: [
         NotificationDropdownButton(),
-        const SizedBox(width: 15),
-        MouseRegion(
-          onEnter: (_) => setState(() => _isHovered['grid'] = true),
-          onExit: (_) => setState(() => _isHovered['grid'] = false),
-          child: IconButton(
-            onPressed: () {},
-            icon: Icon(
-              Icons.grid_view_rounded,
-              size: 27,
-              color: _isHovered['grid']! ? Colors.blue : Colors.grey[600],
-            ),
-          ),
-        ),
-        const SizedBox(width: 15),
-        MouseRegion(
-          onEnter: (_) => setState(() => _isHovered['settings'] = true),
-          onExit: (_) => setState(() => _isHovered['settings'] = false),
-          child: IconButton(
-            onPressed: () {},
-            icon: Icon(
-              Icons.settings,
-              size: 27,
-              color: _isHovered['settings']! ? Colors.blue : Colors.grey[600],
-            ),
-          ),
-        ),
-        const SizedBox(width: 15),
+        const SizedBox(width: 5),
+        // MouseRegion(
+        //   onEnter: (_) => setState(() => _isHovered['grid'] = true),
+        //   onExit: (_) => setState(() => _isHovered['grid'] = false),
+        //   child: IconButton(
+        //     onPressed: () {},
+        //     icon: Icon(
+        //       Icons.grid_view_rounded,
+        //       size: 27,
+        //       color: _isHovered['grid']! ? Colors.blue : Colors.grey[600],
+        //     ),
+        //   ),
+        // ),
+        // const SizedBox(width: 5),
+        // MouseRegion(
+        //   onEnter: (_) => setState(() => _isHovered['settings'] = true),
+        //   onExit: (_) => setState(() => _isHovered['settings'] = false),
+        //   child: IconButton(
+        //     onPressed: () {},
+        //     icon: Icon(
+        //       Icons.settings,
+        //       size: 27,
+        //       color: _isHovered['settings']! ? Colors.blue : Colors.grey[600],
+        //     ),
+        //   ),
+        // ),
+        const SizedBox(width: 5),
         BlocBuilder<ThemeCubit, ThemeState>(
           builder: (context, state) {
             return MouseRegion(
@@ -74,9 +73,9 @@ class _AppBarWidgetState extends State<AppBarWidget> {
             );
           },
         ),
-        const SizedBox(width: 15),
+        const SizedBox(width: 5),
         FullScreenExample(),
-        const SizedBox(width: 15),
+        const SizedBox(width: 5),
         MouseRegion(
           onEnter: (_) => setState(() => _isHovered['avatar'] = true),
           onExit: (_) => setState(() => _isHovered['avatar'] = false),
@@ -89,7 +88,7 @@ class _AppBarWidgetState extends State<AppBarWidget> {
                   backgroundImage: NetworkImage(
                       'https://avatar.iran.liara.run/public/5.png'),
                 ),
-                const SizedBox(width: 10),
+                const SizedBox(width: 5),
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Column(
@@ -100,14 +99,14 @@ class _AppBarWidgetState extends State<AppBarWidget> {
                         style: TextStyle(
                           color: Colors.grey[600],
                           fontWeight: FontWeight.bold,
-                          fontSize: 14,
+                          fontSize: 12,
                         ),
                       ),
                       Text(
                         'Founder',
                         style: TextStyle(
                           color: Colors.grey[600],
-                          fontSize: 12,
+                          fontSize: 11,
                         ),
                       ),
                     ],

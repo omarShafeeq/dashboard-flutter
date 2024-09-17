@@ -4,9 +4,8 @@ import 'package:web_dashboard/views/chat_view.dart';
 import 'package:web_dashboard/views/email_view.dart';
 import 'package:web_dashboard/views/main_view.dart';
 import 'package:web_dashboard/widgets/animated_expansion_tile.dart';
-import 'package:web_dashboard/widgets/charts_flutter.dart';
 import 'package:web_dashboard/widgets/dashboard_list_tile.dart';
-import 'package:web_dashboard/widgets/three_charts.dart';
+import 'package:web_dashboard/widgets/total_sales.dart';
 
 class SideMenu extends StatefulWidget {
   const SideMenu({Key? key}) : super(key: key);
@@ -142,7 +141,7 @@ class _SideMenuState extends State<SideMenu> {
                 press: () {
                   Navigator.of(context).pushReplacement(
                     MaterialPageRoute(
-                      builder: (context) => MainView(),
+                      builder: (context) => SalesDashboard(),
                     ),
                   );
                 },

@@ -1,11 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:sidebar_drawer/sidebar_drawer.dart';
 import 'package:syncfusion_flutter_calendar/calendar.dart';
-import 'package:web_dashboard/widgets/another_notification.dart';
 import 'package:web_dashboard/widgets/app_bar.dart';
-import 'package:web_dashboard/widgets/fullScreen_example.dart';
 import 'package:web_dashboard/widgets/side_menu.dart';
-import 'package:intl/intl.dart';
 
 class CalenderView extends StatefulWidget {
   const CalenderView({Key? key}) : super(key: key);
@@ -84,7 +81,7 @@ class _CalenderViewState extends State<CalenderView> {
 
   void _showDateDialog(DateTime date, CustomAppoinment? appointment) {
     // Format the date to include hours and minutes
-    String formattedDate = DateFormat.yMMMd().add_jm().format(date);
+    //String formattedDate = DateFormat.yMMMd().add_jm().format(date);
 
     if (appointment != null) {
       _textController.text = appointment.subject;

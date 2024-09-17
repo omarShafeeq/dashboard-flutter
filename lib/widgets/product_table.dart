@@ -1,6 +1,4 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 
 class ProductTable extends StatelessWidget {
   final List<Map<String, dynamic>> products = [
@@ -55,88 +53,87 @@ class ProductTable extends StatelessWidget {
     },
   ];
 
+  ProductTable({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      height: 400,
-      child: Expanded(
-        child: Card(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Padding(
-                padding: const EdgeInsets.all(16.0),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                      'Top Selling Products',
-                      style: TextStyle(
-                        fontSize: 14,
-                      ),
-                    ),
-                    ElevatedButton(
-                      onPressed: () {
-                        // Implement export functionality here
-                      },
-                      child: const Row(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: [
-                          Text(
-                            'Export',
-                            style: TextStyle(color: Colors.white),
-                          ),
-                          SizedBox(
-                            width: 5,
-                          ),
-                          Icon(
-                            Icons.arrow_downward_outlined,
-                            color: Colors.white,
-                            size: 15,
-                          )
-                        ],
-                      ),
-                      style: ElevatedButton.styleFrom(
-                        shape: BeveledRectangleBorder(
-                            borderRadius: BorderRadius.circular(3)),
-                        backgroundColor: Colors.blue,
-                      ),
-                    ),
-                  ],
+    return Card(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                const Text(
+                  'Top Selling Products',
+                  style: TextStyle(
+                    fontSize: 14,
+                  ),
                 ),
-              ),
-              SingleChildScrollView(
-                scrollDirection: Axis.horizontal,
-                child: DataTable(
-                  dataRowHeight: 32.0,
-                  columns: const [
-                    DataColumn(label: Expanded(child: Text('Product'))),
-                    DataColumn(label: Expanded(child: Text('Price'))),
-                    DataColumn(label: Expanded(child: Text('Orders'))),
-                    DataColumn(label: Expanded(child: Text('Avl. Quantity'))),
-                    DataColumn(label: Expanded(child: Text('Seller'))),
-                  ],
-                  rows: products.map((product) {
-                    return DataRow(cells: [
-                      DataCell(Text(product['product'])),
-                      DataCell(Text(product['price'])),
-                      DataCell(Text(product['orders'].toString())),
-                      DataCell(Text(product['avgQuantity'].toString())),
-                      DataCell(Text(product['seller'])),
-                    ]);
-                  }).toList(),
+                ElevatedButton(
+                  onPressed: () {
+                    // Implement export functionality here
+                  },
+                  child: const Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      Text(
+                        'Export',
+                        style: TextStyle(color: Colors.white),
+                      ),
+                      SizedBox(
+                        width: 5,
+                      ),
+                      Icon(
+                        Icons.arrow_downward_outlined,
+                        color: Colors.white,
+                        size: 15,
+                      )
+                    ],
+                  ),
+                  style: ElevatedButton.styleFrom(
+                    shape: BeveledRectangleBorder(
+                        borderRadius: BorderRadius.circular(3)),
+                    backgroundColor: Colors.blue,
+                  ),
                 ),
-              ),
-              SizedBox(height: 10),
-              TextButton(
-                onPressed: () {
-                  // Implement view all functionality here
-                },
-                child: Center(child: Text('View All')),
-              ),
-            ],
+              ],
+            ),
           ),
-        ),
+          SingleChildScrollView(
+            scrollDirection: Axis.horizontal,
+            child: Expanded(
+              child: DataTable(
+                dataRowHeight: 32.0,
+                columns: const [
+                  DataColumn(label: Expanded(child: Text('Product'))),
+                  DataColumn(label: Expanded(child: Text('Price'))),
+                  DataColumn(label: Expanded(child: Text('Orders'))),
+                  DataColumn(label: Expanded(child: Text('Avl. Quantity'))),
+                  DataColumn(label: Expanded(child: Text('Seller'))),
+                ],
+                rows: products.map((product) {
+                  return DataRow(cells: [
+                    DataCell(Text(product['product'])),
+                    DataCell(Text(product['price'])),
+                    DataCell(Text(product['orders'].toString())),
+                    DataCell(Text(product['avgQuantity'].toString())),
+                    DataCell(Text(product['seller'])),
+                  ]);
+                }).toList(),
+              ),
+            ),
+          ),
+          const SizedBox(height: 5),
+          TextButton(
+            onPressed: () {
+              // Implement view all functionality here
+            },
+            child: const Center(child: Text('View All')),
+          ),
+        ],
       ),
     );
   }

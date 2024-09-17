@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:sidebar_drawer/sidebar_drawer.dart';
 import 'package:web_dashboard/widgets/app_bar.dart';
 import 'package:web_dashboard/widgets/side_menu.dart';
@@ -10,8 +9,6 @@ class ChatScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final isMobile = MediaQuery.of(context).size.width < 850;
-
     return Scaffold(
       body: SidebarDrawer(
         drawer: const SideMenu(),
@@ -32,12 +29,12 @@ class ChatScreen extends StatelessWidget {
                   Container(
                     width: 300,
                     color: Colors.blue[50],
-                    child: Column(
+                    child: const Column(
                       children: [
-                        const UserProfile(),
-                        const Divider(),
+                        UserProfile(),
+                        Divider(),
                         Expanded(
-                          child: const ChatList(),
+                          child: ChatList(),
                         ),
                       ],
                     ),
@@ -65,8 +62,8 @@ class UserProfile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(16.0),
+    return const Padding(
+      padding: EdgeInsets.all(16.0),
       child: Row(
         children: [
           CircleAvatar(
@@ -74,13 +71,13 @@ class UserProfile extends StatelessWidget {
             backgroundImage: NetworkImage(
                 'https://via.placeholder.com/150'), // Placeholder image
           ),
-          const SizedBox(width: 10),
-          const Text(
+          SizedBox(width: 10),
+          Text(
             'Doris Larson',
             style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
           ),
-          const Spacer(),
-          const Icon(Icons.notifications),
+          Spacer(),
+          Icon(Icons.notifications),
         ],
       ),
     );
@@ -94,7 +91,7 @@ class ChatList extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListView(
       padding: const EdgeInsets.all(8),
-      children: [
+      children: const [
         _ChatItem(
           name: 'Brandon Smith',
           message: 'How are you today?',
@@ -145,7 +142,7 @@ class _ChatItem extends StatelessWidget {
       child: ListTile(
         leading: CircleAvatar(
           radius: 20,
-          backgroundImage: NetworkImage(
+          backgroundImage: const NetworkImage(
               'https://via.placeholder.com/50'), // Placeholder for profile image
           child: status == 'online'
               ? Align(
@@ -153,7 +150,7 @@ class _ChatItem extends StatelessWidget {
                   child: Container(
                     width: 12,
                     height: 12,
-                    decoration: BoxDecoration(
+                    decoration: const BoxDecoration(
                       color: Colors.green,
                       shape: BoxShape.circle,
                     ),
@@ -179,14 +176,14 @@ class ChatWindow extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        _ChatHeader(
+        const _ChatHeader(
           name: 'James Zavel',
           status: 'offline',
         ),
         const SizedBox(height: 16),
         Expanded(
           child: ListView(
-            children: [
+            children: const [
               // Longer chat history
               _MessageBubble(
                 message: 'Hello!',
@@ -241,7 +238,7 @@ class ChatWindow extends StatelessWidget {
             ],
           ),
         ),
-        _MessageInput(),
+        const _MessageInput(),
       ],
     );
   }
@@ -261,7 +258,7 @@ class _ChatHeader extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       children: [
-        CircleAvatar(
+        const CircleAvatar(
           radius: 20,
           backgroundImage: NetworkImage(
               'https://via.placeholder.com/50'), // Placeholder for profile image
