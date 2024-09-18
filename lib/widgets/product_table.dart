@@ -44,13 +44,6 @@ class ProductTable extends StatelessWidget {
       "avgQuantity": 135,
       "seller": "Branded",
     },
-    {
-      "product": "Marco Sport Shoes",
-      "price": "\$119.99",
-      "orders": 75,
-      "avgQuantity": 357,
-      "seller": "Adidas",
-    },
   ];
 
   ProductTable({Key? key}) : super(key: key);
@@ -58,82 +51,85 @@ class ProductTable extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                const Text(
-                  'Top Selling Products',
-                  style: TextStyle(
-                    fontSize: 14,
-                  ),
-                ),
-                ElevatedButton(
-                  onPressed: () {
-                    // Implement export functionality here
-                  },
-                  child: const Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: [
-                      Text(
-                        'Export',
-                        style: TextStyle(color: Colors.white),
+      child: LayoutBuilder(
+        builder: (context, constraints) {
+          // Determine if the screen is narrow
+          bool isNarrow = constraints.maxWidth < 600;
+
+          return Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Padding(
+                padding: const EdgeInsets.all(16.0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    const Text(
+                      'Top Selling Products',
+                      style: TextStyle(fontSize: 16),
+                    ),
+                    ElevatedButton(
+                      onPressed: () {
+                        // Implement export functionality here
+                      },
+                      child: const Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          Text(
+                            'Export',
+                            style: TextStyle(color: Colors.white),
+                          ),
+                          SizedBox(width: 5),
+                          Icon(
+                            Icons.arrow_downward_outlined,
+                            color: Colors.white,
+                            size: 15,
+                          ),
+                        ],
                       ),
-                      SizedBox(
-                        width: 5,
+                      style: ElevatedButton.styleFrom(
+                        shape: BeveledRectangleBorder(
+                          borderRadius: BorderRadius.circular(3),
+                        ),
+                        backgroundColor: Colors.blue,
                       ),
-                      Icon(
-                        Icons.arrow_downward_outlined,
-                        color: Colors.white,
-                        size: 15,
-                      )
-                    ],
-                  ),
-                  style: ElevatedButton.styleFrom(
-                    shape: BeveledRectangleBorder(
-                        borderRadius: BorderRadius.circular(3)),
-                    backgroundColor: Colors.blue,
-                  ),
+                    ),
+                  ],
                 ),
-              ],
-            ),
-          ),
-          SingleChildScrollView(
-            scrollDirection: Axis.horizontal,
-            child: Expanded(
-              child: DataTable(
-                dataRowHeight: 32.0,
-                columns: const [
-                  DataColumn(label: Expanded(child: Text('Product'))),
-                  DataColumn(label: Expanded(child: Text('Price'))),
-                  DataColumn(label: Expanded(child: Text('Orders'))),
-                  DataColumn(label: Expanded(child: Text('Avl. Quantity'))),
-                  DataColumn(label: Expanded(child: Text('Seller'))),
-                ],
-                rows: products.map((product) {
-                  return DataRow(cells: [
-                    DataCell(Text(product['product'])),
-                    DataCell(Text(product['price'])),
-                    DataCell(Text(product['orders'].toString())),
-                    DataCell(Text(product['avgQuantity'].toString())),
-                    DataCell(Text(product['seller'])),
-                  ]);
-                }).toList(),
               ),
-            ),
-          ),
-          const SizedBox(height: 5),
-          TextButton(
-            onPressed: () {
-              // Implement view all functionality here
-            },
-            child: const Center(child: Text('View All')),
-          ),
-        ],
+              // Make the DataTable scrollable
+              SingleChildScrollView(
+                scrollDirection: Axis.horizontal,
+                child: DataTable(
+                  dataRowHeight: isNarrow ? 39.0 : 32.0, // Adjust row height
+                  columns: const [
+                    DataColumn(label: Text('Product')),
+                    DataColumn(label: Text('Price')),
+                    DataColumn(label: Text('Orders')),
+                    DataColumn(label: Text('Avl. Quantity')),
+                    DataColumn(label: Text('Seller')),
+                  ],
+                  rows: products.map((product) {
+                    return DataRow(cells: [
+                      DataCell(Text(product['product'])),
+                      DataCell(Text(product['price'])),
+                      DataCell(Text(product['orders'].toString())),
+                      DataCell(Text(product['avgQuantity'].toString())),
+                      DataCell(Text(product['seller'])),
+                    ]);
+                  }).toList(),
+                ),
+              ),
+              const SizedBox(height: 5),
+              TextButton(
+                onPressed: () {
+                  // Implement view all functionality here
+                },
+                child: const Center(child: Text('View All')),
+              ),
+            ],
+          );
+        },
       ),
     );
   }

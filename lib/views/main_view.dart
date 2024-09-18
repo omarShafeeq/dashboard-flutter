@@ -1,4 +1,6 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:sidebar_drawer/sidebar_drawer.dart';
 import 'package:web_dashboard/widgets/app_bar.dart';
 import 'package:web_dashboard/widgets/charts_flutter.dart';
@@ -25,7 +27,7 @@ class MainView extends StatelessWidget {
               // Determine the number of columns based on the width
               if (constraints.maxWidth < 600) {
                 crossAxisCount = 1; // Mobile
-              } else if (constraints.maxWidth < 1000) {
+              } else if (constraints.maxWidth < 1100) {
                 crossAxisCount = 2; // Tablet
               } else {
                 crossAxisCount = 4; // Desktop
@@ -45,27 +47,42 @@ class MainView extends StatelessWidget {
                     childAspectRatio: aspectRatio,
                   ),
                   const SizedBox(height: 20),
-                  Row(
-                    children: [
-                      Expanded(child: SalesDashboard()),
-                      const SizedBox(width: 16),
-                      Expanded(
-                          child:
-                              const HoverChartView()), // Ensure it uses Expanded
-                    ],
-                  ),
+                  constraints.maxWidth < 1100
+                      ? Column(
+                          children: [
+                            SalesDashboard(),
+                            const HoverChartView(),
+                          ],
+                        )
+                      : Row(
+                          children: [
+                            Expanded(child: SalesDashboard()),
+                            const SizedBox(width: 16),
+                            const Expanded(
+                                flex: 2,
+                                child:
+                                    HoverChartView()), // Ensure it uses Expanded
+                          ],
+                        ),
                   const SizedBox(height: 20),
                   Padding(
                     padding: const EdgeInsets.all(16.0),
                     child: Column(
                       children: [
-                        Row(
-                          children: [
-                            Expanded(child: RevenueLocationCard()),
-                            const SizedBox(width: 16),
-                            Expanded(child: ProductTable()),
-                          ],
-                        ),
+                        constraints.maxWidth < 1100
+                            ? Column(
+                                children: [
+                                  RevenueLocationCard(),
+                                  ProductTable(),
+                                ],
+                              )
+                            : Row(
+                                children: [
+                                  Expanded(child: RevenueLocationCard()),
+                                  const SizedBox(width: 16),
+                                  Expanded(child: ProductTable()),
+                                ],
+                              ),
                         const SizedBox(height: 20),
                         DashboardCharts(),
                       ],

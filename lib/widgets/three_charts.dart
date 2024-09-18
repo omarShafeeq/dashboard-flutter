@@ -14,9 +14,9 @@ class DashboardCharts extends StatelessWidget {
         desktop: Row(
           children: [
             Expanded(child: BuildChannelCard()),
-            SizedBox(width: 10), // Space between cards
+            SizedBox(width: 10),
             Expanded(child: BuildSocialMediaTrafficCard()),
-            SizedBox(width: 10), // Space between cards
+            SizedBox(width: 10),
             Expanded(child: BuildEngagementOverviewCard()),
           ],
         ),
@@ -26,24 +26,22 @@ class DashboardCharts extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Expanded(child: BuildChannelCard()),
-                SizedBox(width: 16), // Space between cards
+                SizedBox(width: 16),
                 Expanded(child: BuildSocialMediaTrafficCard()),
               ],
             ),
-            SizedBox(height: 16), // Space between cards
+            SizedBox(height: 16),
             BuildEngagementOverviewCard(),
           ],
         ),
-        mobile: Expanded(
-          child: Column(
-            children: [
-              BuildChannelCard(),
-              SizedBox(width: 16), // Space between cards
-              BuildSocialMediaTrafficCard(),
-              SizedBox(width: 16), // Space between cards
-              BuildEngagementOverviewCard(),
-            ],
-          ),
+        mobile: Column(
+          children: [
+            BuildChannelCard(),
+            SizedBox(width: 16),
+            BuildSocialMediaTrafficCard(),
+            SizedBox(width: 16),
+            BuildEngagementOverviewCard(),
+          ],
         ),
       ),
     );

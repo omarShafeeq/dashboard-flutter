@@ -27,31 +27,6 @@ class _AppBarWidgetState extends State<AppBarWidget> {
       children: [
         NotificationDropdownButton(),
         const SizedBox(width: 5),
-        // MouseRegion(
-        //   onEnter: (_) => setState(() => _isHovered['grid'] = true),
-        //   onExit: (_) => setState(() => _isHovered['grid'] = false),
-        //   child: IconButton(
-        //     onPressed: () {},
-        //     icon: Icon(
-        //       Icons.grid_view_rounded,
-        //       size: 27,
-        //       color: _isHovered['grid']! ? Colors.blue : Colors.grey[600],
-        //     ),
-        //   ),
-        // ),
-        // const SizedBox(width: 5),
-        // MouseRegion(
-        //   onEnter: (_) => setState(() => _isHovered['settings'] = true),
-        //   onExit: (_) => setState(() => _isHovered['settings'] = false),
-        //   child: IconButton(
-        //     onPressed: () {},
-        //     icon: Icon(
-        //       Icons.settings,
-        //       size: 27,
-        //       color: _isHovered['settings']! ? Colors.blue : Colors.grey[600],
-        //     ),
-        //   ),
-        // ),
         const SizedBox(width: 5),
         BlocBuilder<ThemeCubit, ThemeState>(
           builder: (context, state) {

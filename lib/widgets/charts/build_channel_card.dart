@@ -13,8 +13,8 @@ class BuildChannelCard extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          BuildCardHeader('Channels'),
-          BuildTableHeader(['Channel', 'Visits', 'Progress']),
+          const BuildCardHeader('Channels'),
+          const BuildTableHeader(['Channel', 'Visits', 'Progress']),
           BuildProgressRow('Direct', 3000, 10000, color: Colors.purple),
           BuildProgressRow('Organic Search', 4500, 10000, color: Colors.blue),
           BuildProgressRow('Referral', 3000, 10000, color: Colors.orange),
